@@ -1,26 +1,190 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-void: #080808;
+  --color-obsidian: #0f0f0f;
+  --color-carbon: #161616;
+  --color-charcoal: #1e1e1e;
+  --color-border-dim: rgba(201, 164, 76, 0.08);
+  --color-border-glow: rgba(201, 164, 76, 0.35);
+  --color-gold: #c9a44c;
+  --color-gold-bright: #e2c97e;
+  --color-gold-dim: #7a6030;
+  --color-crimson: #7b1e1e;
+  --color-ash: #8a8a8a;
+  --color-silk: #f0ebe0;
+  --color-pure: #ffffff;
+
+  --font-display: var(--font-cormorant);
+  --font-editorial: var(--font-playfair);
+  --font-body: var(--font-jost);
+  --font-label: var(--font-josefin);
+  --font-data: var(--font-bebas);
+
+  --spacing-section-desktop: 160px;
+  --spacing-section-mobile: 80px;
+
+  /* Adding custom typography classes matching Tailwind v3 syntax in v4 */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --void: #080808;
+    --obsidian: #0f0f0f;
+    --carbon: #161616;
+    --charcoal: #1e1e1e;
+    --border-dim: rgba(201, 164, 76, 0.08);
+    --border-glow: rgba(201, 164, 76, 0.35);
+    --gold: #c9a44c;
+    --gold-bright: #e2c97e;
+    --gold-dim: #7a6030;
+    --crimson: #7b1e1e;
+    --ash: #8a8a8a;
+    --silk: #f0ebe0;
+    --pure: #ffffff;
+  }
+
+  body {
+    background-color: var(--obsidian);
+    color: var(--silk);
+    font-family: var(--font-body), sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-void {
+    color: var(--void);
+  }
+  .text-obsidian {
+    color: var(--obsidian);
+  }
+  .text-carbon {
+    color: var(--carbon);
+  }
+  .text-charcoal {
+    color: var(--charcoal);
+  }
+  .text-gold {
+    color: var(--gold);
+  }
+  .text-gold-bright {
+    color: var(--gold-bright);
+  }
+  .text-gold-dim {
+    color: var(--gold-dim);
+  }
+  .text-crimson {
+    color: var(--crimson);
+  }
+  .text-ash {
+    color: var(--ash);
+  }
+  .text-silk {
+    color: var(--silk);
+  }
+  .text-pure {
+    color: var(--pure);
+  }
+
+  .bg-void {
+    background-color: var(--void);
+  }
+  .bg-obsidian {
+    background-color: var(--obsidian);
+  }
+  .bg-carbon {
+    background-color: var(--carbon);
+  }
+  .bg-charcoal {
+    background-color: var(--charcoal);
+  }
+  .bg-gold {
+    background-color: var(--gold);
+  }
+  .bg-gold-bright {
+    background-color: var(--gold-bright);
+  }
+  .bg-crimson {
+    background-color: var(--crimson);
+  }
+
+  .border-dim {
+    border-color: var(--border-dim);
+  }
+  .border-glow {
+    border-color: var(--border-glow);
+  }
+  .border-gold {
+    border-color: var(--gold);
+  }
+
+  .font-display {
+    font-family: var(--font-display), serif;
+  }
+  .font-editorial {
+    font-family: var(--font-editorial), serif;
+  }
+  .font-body {
+    font-family: var(--font-body), sans-serif;
+  }
+  .font-label {
+    font-family: var(--font-label), sans-serif;
+  }
+  .font-data {
+    font-family: var(--font-data), sans-serif;
+  }
+
+  .shimmer-text {
+    background: linear-gradient(90deg, #c9a44c, #e2c97e, #c9a44c);
+    background-size: 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease infinite;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Base styles for scroll masking - Lenis setup */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
 }
